@@ -1,0 +1,296 @@
+# depslib dependency file v1.0
+1516088846 source:c:\users\akadream\desktop\c\map editor\draw.c
+	"draw.h"
+
+1512943352 c:\users\akadream\desktop\c\map editor\draw.h
+	"instances.h"
+	"map.h"
+	"hero.h"
+	"gui.h"
+	"animation.h"
+
+1514389584 c:\users\akadream\desktop\c\map editor\structs.h
+	"defs.h"
+
+1514851481 c:\users\akadream\desktop\c\map editor\defs.h
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	<SDL_mixer.h>
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl.h
+	"SDL_main.h"
+	"SDL_stdinc.h"
+	"SDL_audio.h"
+	"SDL_cdrom.h"
+	"SDL_cpuinfo.h"
+	"SDL_endian.h"
+	"SDL_error.h"
+	"SDL_events.h"
+	"SDL_loadso.h"
+	"SDL_mutex.h"
+	"SDL_rwops.h"
+	"SDL_thread.h"
+	"SDL_timer.h"
+	"SDL_video.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_main.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_stdinc.h
+	"SDL_config.h"
+	<sys/types.h>
+	<stdio.h>
+	<stdlib.h>
+	<stddef.h>
+	<stdarg.h>
+	<stdlib.h>
+	<malloc.h>
+	<stddef.h>
+	<stdarg.h>
+	<memory.h>
+	<string.h>
+	<strings.h>
+	<inttypes.h>
+	<stdint.h>
+	<ctype.h>
+	<iconv.h>
+	"begin_code.h"
+	<alloca.h>
+	<malloc.h>
+	<malloc.h>
+	<malloc.h>
+	<stdlib.h>
+	"close_code.h"
+
+1326110987 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_config.h
+	"SDL_platform.h"
+	"SDL_config_dreamcast.h"
+	"SDL_config_macos.h"
+	"SDL_config_macosx.h"
+	"SDL_config_symbian.h"
+	"SDL_config_win32.h"
+	"SDL_config_os2.h"
+	"SDL_config_minimal.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_platform.h
+
+1326110994 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_config_win32.h
+	"SDL_platform.h"
+
+1326111000 c:\program files (x86)\codeblocks\sdl1.2\include\begin_code.h
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\close_code.h
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_audio.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_endian.h"
+	"SDL_mutex.h"
+	"SDL_thread.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_error.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_endian.h
+	"SDL_stdinc.h"
+	<endian.h>
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_mutex.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_thread.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_mutex.h"
+	"begin_code.h"
+	<process.h>
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_rwops.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_cdrom.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_cpuinfo.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_events.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_active.h"
+	"SDL_keyboard.h"
+	"SDL_mouse.h"
+	"SDL_joystick.h"
+	"SDL_quit.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_active.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_keyboard.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_keysym.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_keysym.h
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_mouse.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_video.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_video.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"SDL_rwops.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_joystick.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_quit.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_loadso.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_timer.h
+	"SDL_stdinc.h"
+	"SDL_error.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_version.h
+	"SDL_stdinc.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325810433 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_image.h
+	"SDL.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325814793 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_ttf.h
+	"SDL.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325810940 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_mixer.h
+	"SDL_types.h"
+	"SDL_rwops.h"
+	"SDL_audio.h"
+	"SDL_endian.h"
+	"SDL_version.h"
+	"begin_code.h"
+	"close_code.h"
+
+1325738639 c:\program files (x86)\codeblocks\sdl1.2\include\sdl_types.h
+	"SDL_stdinc.h"
+
+1514852675 source:c:\users\akadream\desktop\c\map editor\input.c
+	"input.h"
+
+1513592507 c:\users\akadream\desktop\c\map editor\input.h
+	"instances.h"
+	"map.h"
+	"hero.h"
+	"camera.h"
+
+1513632788 source:c:\users\akadream\desktop\c\map editor\map.c
+	"map.h"
+
+1513451955 c:\users\akadream\desktop\c\map editor\map.h
+	"instances.h"
+	"hero.h"
+
+1514851227 source:c:\users\akadream\desktop\c\map editor\main.c
+	"main.h"
+
+1511173223 c:\users\akadream\desktop\c\map editor\main.h
+	"init.h"
+	"input.h"
+	"draw.h"
+
+1514850660 source:c:\users\akadream\desktop\c\map editor\init.c
+	"init.h"
+
+1500022878 c:\users\akadream\desktop\c\map editor\init.h
+	"instances.h"
+
+1512943482 c:\users\akadream\desktop\c\map editor\instances.h
+	"structs.h"
+
+1513451997 c:\users\akadream\desktop\c\map editor\hero.h
+	"instances.h"
+
+1514852271 source:c:\users\akadream\desktop\c\map editor\hero.c
+	"hero.h"
+
+1502365591 c:\users\akadream\desktop\c\map editor\animation.h
+	"instances.h"
+
+1513718226 source:c:\users\akadream\desktop\c\map editor\animation.c
+	"animation.h"
+
+1512040148 source:c:\users\akadream\desktop\c\map editor\audio.c
+
+1513625541 source:c:\users\akadream\desktop\c\map editor\camera.c
+	"camera.h"
+
+1513592499 c:\users\akadream\desktop\c\map editor\camera.h
+	"instances.h"
+
+1513700577 c:\users\akadream\desktop\c\map editor\gui.h
+	"instances.h"
+
+1514850901 source:c:\users\akadream\desktop\c\map editor\gui.c
+	"gui.h"
+

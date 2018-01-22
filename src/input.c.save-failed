@@ -1,0 +1,426 @@
+#include "input.h"
+
+void getInput(void) {
+    SDL_Event event;
+    SDL_PollEvent(&event);
+
+    switch(event.type) {
+        case SDL_QUIT:
+            exit(1);
+            break;
+        case SDL_KEYDOWN:
+            // Lorsque l'on enfonce une touche
+            switch(event.key.keysym.sym) {
+                case SDLK_ESCAPE:
+                    // Quitter le programme
+                    exit(1);
+                case SDLK_l:
+                    // Charger une map
+                    input.setTile = 1;
+                    break;
+                case SDLK_s:
+                    // Enregistrer une map
+                    input.setSave = 1;
+                    break;
+                case SDLK_m:
+                    // Sélectionne un event monstre
+                    input.setMonster = 1;
+                    break;
+                case SDLK_d:
+                    input.setDoor = 1;
+                    break;
+                case SDLK_i:
+                    input.setSwitch = 1;
+                    break;
+                case SDLK_c:
+                    input.setChest = 1;
+                    break;
+                case SDLK_b:
+                    input.setBlock = 1;
+                    break;
+                case SDLK_k:
+                    input.setKey = 1;
+                    break;
+                case SDLK_KP1:
+                    input.setLowLayer = 1;
+                    break;
+                case SDLK_KP2:
+                    input.setHighLayer = 1;
+                    break;
+                case SDLK_KP3:
+                    input.setEventLayer = 1;
+                    break;
+                case SDLK_LCTRL:
+                    input.setControl = 1;
+                case SDLK_DELETE:
+                    input.setReset = 1;
+                    break;
+                case SDLK_UP:
+                    input.setUp = 1;
+                    break;
+                case SDLK_DOWN:
+                    input.setDown = 1;
+                    break;
+                case SDLK_LEFT:
+                    input.setLeft = 1;
+                    break;
+                case SDLK_RIGHT:
+                    input.setRight = 1;
+                    break;
+            }
+            break;
+        case SDL_KEYUP:
+            switch(event.key.keysym.sym) {
+                case SDLK_LCTRL:
+                    input.setControl = 0;
+                    break;
+                case SDLK_LEFT:
+                    input.setLeft = 0;
+                    break;
+                case SDLK_RIGHT:
+                    input.setRight = 0;
+                    break;
+                case SDLK_UP:
+                    input.setUp = 0;
+                    break;
+                case SDLK_DOWN:
+                    input.setDown = 0;
+                    break;
+            }
+            break;
+        case SDL_MOUSEBUTTONDOWN:
+            // Lorsque l'on appuis sur un bouton de la souris
+            switch(event.button.button) {
+                case SDL_BUTTON_LEFT:
+                    //input.setTile = 1;
+                    room.lowLayer[(event.button.x / TILE_MAX) + room.roomX][(cursor.tileY / TILE_MAX) + room.roomY] = room.tileIndex;
+                    break;
+                case SDL_BUTTON_MIDDLE:
+                    input.setCopy = 1;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    input.setEmpty = 1;
+                    break;
+                case SDL_BUTTON_WHEELUP:
+                    input.setNextTile = 1;
+                    break;
+                case SDL_BUTTON_WHEELDOWN:
+                    input.setBackTile = 1;
+                    break;
+            }
+            break;
+        case SDL_MOUSEBUTTONUP:
+            switch(event.button.button) {
+                case SDL_BUTTON_LEFT:
+                    input.setTile = 0;
+                    break;
+                case SDL_BUTTON_RIGHT:
+                    input.setEmpty = 0;
+                    break;
+            }
+            // Lorsque l'on relâche un bouton de la souris
+            break;
+        case SDL_MOUSEMOTION:
+            cursor.x = event.motion.x;
+            cursor.y = event.motion.y;
+            // Lorsque l'on déplace la souris
+            break;
+    }
+
+    SDL_GetMouseState(&cursor.tileX, &cursor.tileY);
+
+    switch(game.edit) {
+        case DUNGEON_MAPPING:
+            cursor.tileX;
+            cursor.tileY;
+            break;
+    }
+}
+
+void update(void) {
+    if(input.setUp == 1) {
+        room.roomY--;
+
+        if(room.roomY < 0) {
+            room.roomY = 0;
+        }
+    }
+    else if(input.setDown == 1) {
+        room.roomY++;
+
+        if(room.roomY >= WINDOWS_Y + TILE_MAX) {
+            room.roomY = WINDOWS_Y - TILE_MAX;
+        }
+    }
+
+    if(input.setLeft == 1) {
+        room.roomX--;
+
+        if(room.roomX < 0) {
+            room.roomX = 0;
+        }
+    }
+    else if(input.setRight == 1) {
+        room.roomX++;
+
+        if(room.roomX > WINDOWS_X + TILE_MAX) {
+            room.roomX = WINDOWS_X - TILE_MAX;
+        }
+    }
+
+
+    if(input.setTile == 1) {
+        switch(game.edit) {
+            case ROOM_MAPPING:
+                switch(room.currentLayer) {
+                    case LOWLAYER:
+                        printf("Ok !\n");
+                        room.lowLayer[(cursor.tileX / TILE_MAX) + room.roomX][(cursor.tileY / TILE_MAX) + room.roomY] = room.tileIndex;
+                        break;
+                    case HIGHLAYER:
+                        room.highLayer[(cursor.tileX / TILE_MAX) + room.roomX][(cursor.tileY / TILE_MAX) + room.roomY] = room.tileIndex;
+                        break;
+                    case EVENTLAYER:
+                        if(room.eventIndex == START_POINT && room.start == 0) {
+                            room.start = 1;
+                            room.eventLayer[(cursor.tileX / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] = room.eventIndex;
+                        }
+                        else if(room.eventIndex != START_POINT) {
+                            room.eventLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] = room.eventIndex;
+                        }
+                        input.setTile = 0;
+                        break;
+                }
+                break;
+            case DUNGEON_MAPPING:
+                if(cursor.tileX >= 0 &&
+                   cursor.tileY >= 0 &&
+                   cursor.tileX < DUNGEON_MAX_X * TILE_MAX &&
+                   cursor.tileY < DUNGEON_MAX_Y * TILE_MAX) {
+                    printf("Poser un tile !\n");
+                    dungeon.layer[(cursor.x / TILE_MAX) + room.roomX][cursor.tileY / TILE_MAX] = FILL;
+                }
+                else {
+                    input.setTile = 0;
+                }
+                break;
+        }
+    }
+    else if(input.setEmpty == 1) {
+        switch(game.edit) {
+            case ROOM_MAPPING:
+                switch(room.currentLayer) {
+                    case LOWLAYER:
+                        room.lowLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] = EMPTY;
+                        break;
+                    case HIGHLAYER:
+                        room.highLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] = EMPTY;
+                        break;
+                    case EVENTLAYER:
+                        if(room.eventLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] == START_POINT) {
+                            room.start = 0;
+                        }
+                        room.eventLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY] = EMPTY;
+                        input.setEmpty = 0;
+                        break;
+                }
+                break;
+            case DUNGEON_MAPPING:
+                if(cursor.tileX >= 0 &&
+                   cursor.tileY >= 0 &&
+                   cursor.tileX < DUNGEON_MAX_X * TILE_MAX &&
+                   cursor.tileY < DUNGEON_MAX_Y * TILE_MAX) {
+                    printf("Enlever un tile !\n");
+                    dungeon.layer[cursor.tileX / TILE_MAX][cursor.tileY / TILE_MAX] = EMPTY;
+                }
+                else {
+                    input.setEmpty = 0;
+                }
+                break;
+        }
+    }
+
+    if(input.setCopy == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            switch(room.currentLayer) {
+                case LOWLAYER:
+                    room.tileIndex = room.lowLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY];
+                    break;
+                case HIGHLAYER:
+                    room.tileIndex = room.highLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY];
+                    break;
+                case EVENTLAYER:
+                    room.eventIndex = room.eventLayer[(cursor.x / TILE_MAX) + room.roomX][(cursor.y / TILE_MAX) + room.roomY];
+                    break;
+            }
+        }
+        input.setCopy = 0;
+    }
+
+    if(input.setNextTile == 1) {
+        if(room.currentLayer == LOWLAYER || room.currentLayer == HIGHLAYER) {
+            room.tileIndex++;
+
+            if(room.tileIndex > (tileset.w / 32) * (tileset.h / 32)) {
+                room.tileIndex = 0;
+            }
+        }
+        else if(room.currentLayer == EVENTLAYER) {
+            room.eventIndex++;
+
+            if(room.eventIndex > 1) {
+                room.eventIndex = 0;
+            }
+        }
+        input.setNextTile = 0;
+    }
+    else if(input.setBackTile == 1) {
+        if(room.currentLayer == LOWLAYER || room.currentLayer == HIGHLAYER) {
+            room.tileIndex--;
+
+            if(room.tileIndex < 0) {
+                room.tileIndex = (tileset.w / 32) * (tileset.h / 32);
+            }
+        }
+        else if(room.currentLayer == EVENTLAYER) {
+            room.eventIndex--;
+
+            if(room.eventIndex < 0) {
+                room.eventIndex = 1;
+            }
+        }
+        input.setBackTile = 0;
+    }
+
+    if(input.setLowLayer == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = LOWLAYER;
+        }
+
+        input.setLowLayer = 0;
+    }
+    else if(input.setHighLayer == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = HIGHLAYER;
+        }
+
+        input.setHighLayer = 0;
+    }
+    else if(input.setEventLayer == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+        }
+
+        input.setEventLayer = 0;
+    }
+
+    if(input.setReset == 1) {
+        switch(game.edit) {
+            case DUNGEON_MAPPING:
+                initDungeon();
+                break;
+            case ROOM_MAPPING:
+                initRoom();
+                break;
+        }
+
+        input.setReset = 0;
+    }
+
+    if(input.setControl == 1) {
+        // Changer de mode d'édition
+        switch(game.edit) {
+            case DUNGEON_MAPPING:
+                printf("Editeur de salles\n");
+                game.edit = ROOM_MAPPING;
+                setWindow("Room editor", WINDOWS_X, WINDOWS_Y);
+                loadRoom(room.roomID);
+                break;
+            case ROOM_MAPPING:
+                printf("Editeur de donjon\n");
+                game.edit = DUNGEON_MAPPING;
+                setWindow("Dungeon editor", DUNGEON_MAX_X * TILE_MAX, DUNGEON_MAX_Y * TILE_MAX);
+                loadDungeon();
+                break;
+        }
+
+        input.setControl = 0;
+    }
+
+    if(input.setLoad == 1) {
+        switch(game.edit) {
+            case DUNGEON_MAPPING:
+                loadDungeon();
+                break;
+            case ROOM_MAPPING:
+                loadRoom(room.roomID);
+                break;
+        }
+        input.setLoad = 0;
+    }
+
+    if(input.setSave == 1) {
+        switch(game.edit) {
+            case DUNGEON_MAPPING:
+                saveDugeon();
+                break;
+            case ROOM_MAPPING:
+                saveRoom();
+                break;
+        }
+
+        input.setSave = 0;
+    }
+
+    if(input.setMonster == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = MONSTERS;
+        }
+        input.setMonster = 0;
+    }
+
+    if(input.setDoor == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = DOORS;
+        }
+        input.setDoor = 0;
+    }
+
+    if(input.setBlock == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = BLOCKS;
+        }
+        input.setBlock = 0;
+    }
+
+    if(input.setChest == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = CHESTS;
+        }
+        input.setChest = 0;
+    }
+
+    if(input.setKey == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = KEYS;
+        }
+        input.setKey = 0;
+    }
+
+    if(input.setSwitch == 1) {
+        if(game.edit == ROOM_MAPPING) {
+            room.currentLayer = EVENTLAYER;
+            room.eventIndex = SWITCHS;
+        }
+    }
+
+    // Vitesse du scrolling
+    if(input.setLeft == 1 || input.setUp == 1 || input.setDown == 1 || input.setRight == 1) {
+        SDL_Delay(30);
+    }
+}
